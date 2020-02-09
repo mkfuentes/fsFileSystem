@@ -2,33 +2,27 @@ const fs = require('fs')
 const express = require('express')
 const app = express()
 
-const newKoder = {
-  name:"Miguel2",
-  id:10
-}
+const dkoder = fs.readFileSync('koders.json')
+const koder = JSON.parse(dkoder)
 
-const jsonString = JSON.stringify(newKoder)
+app.get('/add/:name/:id', addkoder)
 
-fs.readFile('./koders.json', 'utf8', (err, jsonString) => {
-  if (err){
-    console.log("Archivo no leido" , err)
-    return
+function addkoder(request, response){
+  const data = request.params
+  const word = data.name
+  const score = Number(data.id)
+  koder[word] = score
+  let dakoder = JSON.stringify(koder)
+  fs.writeFile('koders.json',dakoder, finished)
+  function finished(err){
+    console.log('Ok')
   }
-  console.log("Informacion: ", jsonString)
-})
-
-app.get('./new', addkoder)
-function addkoder (request, response) {
-  response.send('Agregar koder')
-  
+  response.send('ok1')
 }
 
-fs.writeFile('./koders.json', jsonString, err => {
-  if (err) {
-    console.log('Error escribiendo el archivo', err)
-} else {
-    console.log('Satisfactorio')
+app.get('/all', showAll)
+function showAll(request, response){
+  response.send(koder)
 }
-})
 
 app.listen(8080, console.log('Listening'))
