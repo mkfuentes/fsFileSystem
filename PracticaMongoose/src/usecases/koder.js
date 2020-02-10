@@ -2,7 +2,6 @@ const koder = require('../models/koder')
 
 function create ({ name, gender, email, birthDate }) {
   const newKoder = new koder ({ name, gender, email, birthDate })
-
   return newKoder.save()
 }
 

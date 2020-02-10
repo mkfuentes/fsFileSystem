@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const db = require("./src/lib/db.js")
 const server = require('./src/server')
 
@@ -9,5 +11,5 @@ db
     })
   })
   .catch(error => {
-    console.log("estamos conectados", error)
+    console.log("Algo salio mal", error)
   })
