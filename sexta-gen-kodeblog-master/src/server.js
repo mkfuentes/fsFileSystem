@@ -1,9 +1,7 @@
 const express = require('express')
 const cors = require('cors')
-
 const postsRouter = require('./routes/posts')
 const usersRouter = require('./routes/users')
-
 const app = express()
 
 app.use(cors())
